@@ -15,14 +15,13 @@ async function query(file) {
     );
 
     if (!response.ok) {
-      console.log("Errrror",response);
-      throw new Error("Failed to query Hugging Face API");
+      throw new Error(`Échec de la requête à l'API Hugging Face. Statut: ${response.status}`);
     }
-    console.log("Good",response);
+    
     const result = await response.json();
     return result;
   } catch (error) {
-    console.error("Error querying Hugging Face API:", error);
+    console.error("Erreur lors de la requête à l'API Hugging Face:", error);
     throw error;
   }
 }
